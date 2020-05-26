@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<title>ConditionalView Demo</title>
+
+<main>
+  Show: <span id="on">On</span><span id="off">Off</span>
+<main>
+
+<button type="button">Toggle</button>
+
+<script type="module">
+import ConditionalView from '../main.js';
+
+/* DOM variables */
+let root = document.querySelector('main');
+let onNode = root.querySelector('#on');
+let offNode = root.querySelector('#off');
+let btnNode = document.querySelector('button');
+
+/* DOM views */
+let cond = new ConditionalView(onNode, offNode, false);
+
+/* State variables */
+let show = false;
+
+/* DOM update functions */
+function setCondition(value) {
+  cond.update(value);
+}
+
+/* State update functions */
+function toggleShow() {
+  show = !show;
+  setCondition(show);
+}
+
+/* Event listeners */
+function onButtonClick() {
+  toggleShow();
+}
+
+/* Init functionality */
+btnNode.addEventListener('click', onButtonClick);
+</script>
